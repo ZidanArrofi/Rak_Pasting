@@ -26,14 +26,14 @@
 
             <div class="row">
               <div class="col-6">
-                <select class="select2 form-select mb-3 custom-select" style="width: 100%; height:36px;">
+                <select class="select2 form-select mb-3 custom-select" name="gedung_asal" style="width: 100%; height:40px;">
                   <option>Gedung Asal</option>
                   <option value="Gedung B">Gedung B</option>
                   <option value="Gedung E">Gedung E</option>
                 </select>
               </div>
               <div class="col-6">
-                <select class="select2 form-select mb-3 custom-select" style="width: 100%; height:36px;">
+                <select class="select2 form-select mb-3 custom-select" name="gedung_tujuan" style="width: 100%; height:40px;">
                   <option>Gedung Tujuan</option>
                   <option value="Gedung B">Gedung B</option>
                   <option value="Gedung E">Gedung E</option>
@@ -41,18 +41,19 @@
               </div>
             </div>
 
-
-
             <div class="row">
               <div class="col-4"></div>
-              <div class="col-4" style="text-align:center;"><input type="submit" class="btn btn-success mt-3" value="Save"></div>
+              <div class="col-4" style="text-align:center;">
+                <input type="submit" class="btn btn-success mt-3" value="Save" id="save-btn">
+              </div>
               <div class="col-4"></div>
             </div>
-          </form>
         </div>
+        </form>
       </div>
     </div>
   </div>
+</div>
 </div>
 
 
@@ -82,6 +83,20 @@
     if (event.keyCode === 9) { // Tombol Tab
       event.preventDefault();
       addButton.click();
+    }
+  });
+
+  document.getElementById("save-btn").addEventListener("click", function(e) {
+    e.preventDefault(); // prevent default form submission
+
+    var gedungAsal = document.getElementsByName("gedung_asal")[0].value;
+    var gedungTujuan = document.getElementsByName("gedung_tujuan")[0].value;
+
+    if (gedungAsal === gedungTujuan) {
+      alert("Gedung asal dengan gedung tujuan harus berbeda");
+    } else {
+      // continue with form submission
+      document.getElementsByTagName("form")[0].submit();
     }
   });
 </script>
